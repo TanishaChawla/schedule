@@ -3,18 +3,22 @@
 <head lang="en">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-    <title>Schedule | Delete</title>
+    <title>Schedule | Login</title>
 
 
 </head>
 <body>
 <div class="formContainer" >
-    <form class="form-horizontal" role="form" action="/schedule/delete" method="POST" >
+    <form class="form-horizontal" role="form" action="/login" method="POST" >
 
         <div class="form-group" >
             <label for="fieldName" class="col-sm-2 control-label" >Name</label>
             <div class="col-sm-4" >
                 <input type="text" class="form-control" required id="fieldName" name="name" >
+            </div>
+            <label for="fieldPassword" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" required id="fieldPassword" name="password">
             </div>
 
         </div>

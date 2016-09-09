@@ -25,6 +25,15 @@ var url = 'mongodb://tanisha:tanisha@ds029106.mlab.com:29106/scheduledb';
 
 mongoose.connect(url);
 
+
+app.post('/login',function(req,res){
+    if(req.body.name=='shubham' && req.body.password=='mathur'){
+        res.redirect(200,'/home');
+    }
+    else{
+        res.send("Wrong credentials");
+    }
+});
 app.get('/',function(req,res){
     res.render('home.ejs');
 });
