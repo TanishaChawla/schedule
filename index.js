@@ -16,9 +16,8 @@ var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var schema= new Schema({
     name: String,
-    startDate: Array,
+    startDate: String,
     startTime: Array,
-    endDate: Array,
     endTime: Array,
     venue: Array
 });
@@ -40,7 +39,6 @@ app.post('/schedule/add',function(req,res){
         name: req.body.name,
         startDate: req.body.startDate,
         startTime: req.body.startTime,
-        endDate: req.body.endDate,
         endTime: req.body.endTime,
         venue: req.body.venue
     });
@@ -61,7 +59,7 @@ app.get('/delete',function(req,res){
     res.render('delete.ejs');
 });
 app.post('/schedule/delete',function(req,res){
-    schedule.remove({name: req.body.name},function(err){
+    schedule.remove({name: req.body.name,startDate:req.body.startDate},function(err){
         if(err){
             console.log("could not delete this entry");
         }
@@ -78,7 +76,11 @@ app.get('/update',function(req,res){
     res.render('update.ejs');
 });
 app.post('/schedule/update',function(req,res){
-    schedule.findOneAndUpdate({name: req.body.name},{name: req.body.name,startDate: req.body.startDate,startTime:req.body.startTime,endDate: req.body.endDate,endTime:req.body.endTime,venue: req.body.venue},{upsert: false}, function(err,doc){
+    schedule.findOneAndUpdate({name: req.body.name},{name: req.body.name,
+        startDate: req.body.startDate,
+        startTime:req.body.startTime,
+        endTime:req.body.endTime,
+        venue: req.body.venue},function(err){
         if(err){
             console.log("could not update");
         }
@@ -103,7 +105,6 @@ app.get('/api',function(req,res) {
                 name: a.name,
                 startDate: a.startDate,
                 startTime: a.startTime,
-                endDate: a.endDate,
                 endTime: a.endTime,
                 venue: a.venue
             }

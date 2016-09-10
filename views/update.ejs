@@ -19,18 +19,25 @@
             <p>add date in this form: dd-mm-yyyy<br>Time will be in 24 hour format (hh:mm), so do not add am or pm.</p>
             <p>In case of multiple slots, separate each slots starting time by comma.<br>Eg:20-09-2016,21-09-2016</p>
             <p>Also first entry in startDate matches with first entry in endDate, so please add the entries in correct order.</p>
+
             <label for="fieldstartDate" class="col-sm-2 control-label" >startDate</label>
-            <div class="col-sm-4" >
-                <input type="text" class="form-control" required id="fieldstartDate" name="startDate" >
-            </div>
+            <select name="startDate" id="fieldstartDate">
+                <option value="10-09-2016">10-09-2016</option>
+                <option value="11-09-2016">11-09-2016</option>
+                <option value="17-09-2016">17-09-2016</option>
+                <option value="18-09-2016">18-09-2016</option>
+                <option value="20-09-2016">20-09-2016</option>
+                <option value="21-09-2016">21-09-2016</option>
+                <option value="23-09-2016">23-09-2016</option>
+                <option value="24-09-2016">24-09-2016</option>
+                <option value="25-09-2016">25-09-2016</option>
+            </select>
+
             <label for="fieldstartTime" class="col-sm-2 control-label" >startTime</label>
             <div class="col-sm-4" >
                 <input type="text" class="form-control" required id="fieldstartTime" name="startTime" >
             </div>
-            <label for="fieldendDate" class="col-sm-2 control-label" >endDate</label>
-            <div class="col-sm-4" >
-                <input type="text" class="form-control" required id="fieldendDate" name="endDate" >
-            </div>
+
             <label for="fieldendTime" class="col-sm-2 control-label" >endTime</label>
             <div class="col-sm-4" >
                 <input type="text" class="form-control" required id="fieldendTime" name="endTime" >
