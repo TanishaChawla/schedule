@@ -17,23 +17,18 @@ var Schema=mongoose.Schema;
 var schema= new Schema({
     name: String,
     startDate: Array,
+    startTime: Array,
     endDate: Array,
+    endTime: Array,
     venue: Array
 });
 var schedule=mongoose.model('schedule',schema);
-var url = 'mongodb://tanisha:tanisha@ds029106.mlab.com:29106/scheduledb';
+var url = process.env.MONGO_URI||'mongodb://localhost/scheduledb';
 
 mongoose.connect(url);
 
 
-app.post('/login',function(req,res){
-    if(req.body.name=='shubham' && req.body.password=='mathur'){
-        res.redirect(200,'/home');
-    }
-    else{
-        res.send("Wrong credentials");
-    }
-});
+
 app.get('/',function(req,res){
     res.render('home.ejs');
 });
@@ -44,7 +39,9 @@ app.post('/schedule/add',function(req,res){
     var s= new schedule({
         name: req.body.name,
         startDate: req.body.startDate,
+        startTime: req.body.startTime,
         endDate: req.body.endDate,
+        endTime: req.body.endTime,
         venue: req.body.venue
     });
     s.save(function(err,userobj){
@@ -81,7 +78,7 @@ app.get('/update',function(req,res){
     res.render('update.ejs');
 });
 app.post('/schedule/update',function(req,res){
-    schedule.findOneAndUpdate({name: req.body.name},{name: req.body.name,startDate: req.body.startDate,endDate: req.body.endDate,venue: req.body.venue},{upsert: false}, function(err,doc){
+    schedule.findOneAndUpdate({name: req.body.name},{name: req.body.name,startDate: req.body.startDate,startTime:req.body.startTime,endDate: req.body.endDate,endTime:req.body.endTime,venue: req.body.venue},{upsert: false}, function(err,doc){
         if(err){
             console.log("could not update");
         }
@@ -105,7 +102,9 @@ app.get('/api',function(req,res) {
             return {
                 name: a.name,
                 startDate: a.startDate,
+                startTime: a.startTime,
                 endDate: a.endDate,
+                endTime: a.endTime,
                 venue: a.venue
             }
         }));
