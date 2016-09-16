@@ -5,13 +5,14 @@ var express = require('express');
 var app=express();
 var path=require('path');
 var bodyparser=require('body-parser');
+var cors=require('cors');
 
 app.use(bodyparser());
 app.set('port',process.env.PORT || 4500);
 var ejs=require('ejs');
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine',ejs);
-
+app.use(cors());
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var schema= new Schema({
